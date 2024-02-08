@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/posts.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container-fluid d-flex flex-column align-items-center px-0">
+    <nav class="w-100 navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/blogs">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Modify a post </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1 id="available-posts">Available posts</h1>
+    <div id="posts">
+        <% posts.forEach(post => { %>
+        <a href="<%= `/blogs/${post._id}` %>">
+            <div class="post-preview d-flex flex-column">
+                <h2 class="post-title">
+                    <%= post.title %>
+                </h2>
+                <div class="post-author d-flex">
+                    <p class="post-author-key">Author:</p>
+                    <p class="post-author-value">
+                        <%= post.author %>
+                    </p>
+                </div>
+                <div class="post-created d-flex">
+                    <p class="post-created-key">Created:</p>
+                    <p class="post-created-value">
+                        <%= (new Date(post.createdAt)).toLocaleString("en-GB", { day: "numeric", month: "long", year: "numeric" }) %>
+                    </p>
+                </div>
+                <div class="post-updated d-flex">
+                    <p class="post-updated-key">Updated:</p>
+                    <p class="post-updated-value">
+                        <%= (new Date(post.updatedAt)).toLocaleString("en-GB", { day: "numeric", month: "long", year: "numeric" }) %>
+                    </p>
+                </div>
+            </div>
+        </a>
+        <% }) %>
+    </div>
+    <button id="create-post-modal-btn" data-bs-toggle="modal" data-bs-target="#create-post-modal" >
+        <i class="fa-solid fa-plus fa-xs"></i>
+    </button>
+    <div class="modal fade" id="create-post-modal" tabindex="-1" aria-labelledby="create-post-modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="create-post-modal-title">Create the post</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex flex-column">
+                    <div class="d-flex flex-column">
+                        <label>Author:</label>
+                        <input id="author" type="text" />
+                    </div>
+                    <div class="d-flex flex-column">
+                        <label>Title:</label>
+                        <input id="title" type="text" />
+                    </div>
+                    <div class="d-flex flex-column">
+                        <label>Body:</label>
+                        <textarea id="body"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="create-post-btn" type="button" class="btn btn-success">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"
+></script>
+<script type="module" src="/scripts/posts.js"></script>
+</body>
+</html>

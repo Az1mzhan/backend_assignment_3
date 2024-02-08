@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+nav {
+  position: sticky;
+  left: 0;
+  top: 0;
+  border-bottom: 0.25vh solid black;
+}
+
+a {
+  transition: opacity 0.125s ease-out;
+}
+
+a:hover {
+  opacity: 0.75;
+}
+
+i {
+  color: black;
+}
+
+.post-title {
+  font-weight: bold;
+}
+
+.post-meta-data {
+  gap: 2.5vw;
+}
+
+.post-author,
+.post-created,
+.post-updated {
+  gap: 0.5vw;
+}
+
+.post-author-key,
+.post-created-key,
+.post-updated-key {
+  font-weight: bold;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.modal-body {
+  gap: 2.5vh;
+}
